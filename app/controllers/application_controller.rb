@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :current_user
 
   def login_required
     if !current_user
       respond_to do |format|
-        format.html  { 
-          redirect_to '/auth/josh_id'
+        format.html  {
+          redirect_to '/auth/webmais'
         }
         format.json {
           render :json => { 'error' => 'Access Denied' }.to_json
@@ -15,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return nil unless session[:user_id]
-    @current_user ||= User.find_by_uid(session[:user_id]['uid'])
+    return nil unless session["user_id"].present?
+    @current_user ||= User.find_by_uid(session["user_id"]['uid'])
   end
 end
