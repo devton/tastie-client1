@@ -46,7 +46,6 @@ GEM
     mime-types (1.16)
     multi_json (0.0.5)
     multipart-post (1.1.0)
-    mysql2 (0.2.6)
     net-ldap (0.1.1)
     nokogiri (1.4.4)
     oa-basic (0.1.6)
@@ -82,6 +81,7 @@ GEM
       oa-enterprise (= 0.1.6)
       oa-oauth (= 0.1.6)
       oa-openid (= 0.1.6)
+    pg (0.11.0)
     polyglot (0.3.1)
     pyu-ruby-sasl (0.0.3.2)
     rack (1.2.1)
@@ -121,6 +121,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  mysql2
   omniauth
+  pg
   rails (= 3.0.3)

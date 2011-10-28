@@ -6,7 +6,8 @@ class UserSessionsController < ApplicationController
   # omniauth callback method
   def create
     omniauth = request.env['omniauth.auth']
-
+    # raise omniauth.inspect
+    #
     user = User.find_by_uid(omniauth['uid'])
     if not user
       # New user registration

@@ -1,24 +1,25 @@
 require 'omniauth/oauth'
 require 'multi_json'
-
+# CUSTOM_PROVIDER_URL = 'http://oauthsn-dev.heroku.com/'
+CUSTOM_PROVIDER_URL = 'http://localhost:3001/'
 module OmniAuth
  module Strategies
 
-   class Webmais < OAuth2
+   class OauthSn < OAuth2
 
     def initialize(app, api_key = nil, secret_key = nil, options = {}, &block)
       client_options = {
         :site =>  CUSTOM_PROVIDER_URL,
-        :authorize_url => "#{CUSTOM_PROVIDER_URL}/auth/webmais/authorize",
-        :access_token_url => "#{CUSTOM_PROVIDER_URL}/auth/webmais/access_token"
+        :authorize_url => "#{CUSTOM_PROVIDER_URL}/auth/oauth_sn/authorize",
+        :access_token_url => "#{CUSTOM_PROVIDER_URL}/auth/oauth_sn/access_token"
       }
-      super(app, :webmais, api_key, secret_key, client_options, &block)
+      super(app, :oauth_sn, api_key, secret_key, client_options, &block)
     end
 
 protected
 
     def user_data
-      @data ||= MultiJson.decode(@access_token.get("/auth/webmais/user.json"))
+      @data ||= MultiJson.decode(@access_token.get("/auth/oauth_sn/user.json"))
     end
 
     def request_phase
